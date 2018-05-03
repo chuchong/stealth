@@ -1,4 +1,4 @@
-//***********************************¹ºÂò×°±¸²ßÂÔµÄ¶¨Òå¼°ÊµÏÖ*******************************
+//***********************************è´­ä¹°è£…å¤‡ç­–ç•¥çš„å®šä¹‰åŠå®žçŽ°*******************************
 //by wxs
 //2018/5/2
 
@@ -9,7 +9,7 @@
 
 #ifndef DEBUG
 #define DEBUG false
-//´Ë´¦¸ü¸ÄÎªtrue½øÈëµ÷ÊÔÄ£Ê½£¬¿ØÖÆÌ¨½«Êä³öµ÷ÊÔÐÅÏ¢
+//æ­¤å¤„æ›´æ”¹ä¸ºtrueè¿›å…¥è°ƒè¯•æ¨¡å¼ï¼ŒæŽ§åˆ¶å°å°†è¾“å‡ºè°ƒè¯•ä¿¡æ¯
 #endif
 
 class WasteMoneyStrategy : public Strategy
@@ -32,7 +32,7 @@ void WasteMoneyStrategy::generateActions(const PlayerSight &sight, Actions *acti
 
     int gold = sight.gold;
 	bool bought = false;
-	//Èç¹ûÔÚ±¾º¯ÊýÖ´ÐÐ¹ý³ÌÖÐÏòactionsÖÐÌí¼ÓÁË¹ºÂò²Ù×÷£¬ÔòboughtÎªtrue£¬Ö÷ÒªÎªµ÷ÊÔÓÃ
+	//å¦‚æžœåœ¨æœ¬å‡½æ•°æ‰§è¡Œè¿‡ç¨‹ä¸­å‘actionsä¸­æ·»åŠ äº†è´­ä¹°æ“ä½œï¼Œåˆ™boughtä¸ºtrueï¼Œä¸»è¦ä¸ºè°ƒè¯•ç”¨
 	if (gold >= WardPrice && sight.wardCount < wardNum && sight.bombCount != 0)
     {
 		actions->emplace(BuyItem, WardItem);
@@ -50,7 +50,6 @@ void WasteMoneyStrategy::generateActions(const PlayerSight &sight, Actions *acti
 		if (DEBUG)
 		{
 			std::cout << "round: " << sight.round << " buy bomb" << std::endl;
-			std::cout << "here" << std::endl;
 		}
 		bought = true;
     }
@@ -60,4 +59,4 @@ void WasteMoneyStrategy::generateActions(const PlayerSight &sight, Actions *acti
 			<< "bomb num(before bought): " << sight.bombCount << std::endl << std::endl;
 	}
 }
-//***********************************¹ºÂò×°±¸²ßÂÔµÄ¶¨Òå¼°ÊµÏÖ½áÊø*******************************
+//***********************************è´­ä¹°è£…å¤‡ç­–ç•¥çš„å®šä¹‰åŠå®žçŽ°ç»“æŸ*******************************

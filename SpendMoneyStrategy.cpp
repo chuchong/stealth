@@ -3,8 +3,10 @@
 void SpendMoneyStrategy::generateActions(const PlayerSight &sight, Actions *actions)
 {
 	CHECK_DISABLED
-
-		int gold = sight.gold;
+	if (sight.hp == 0)
+		return;
+	//如果当前处于死亡惩罚状态，直接跳过
+	int gold = sight.gold;
 	bool bought = false;
 	//如果在本函数执行过程中向actions中添加了购买操作，则bought为true，主要为调试用
 	if (gold >= WardPrice && sight.wardCount < wardNum && sight.bombCount != 0)

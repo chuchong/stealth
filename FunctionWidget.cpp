@@ -1,29 +1,32 @@
-#include "FunctionWidget.h"
-//ÅĞ¶ÏÊÇ·ñÊÇºÚÒ¹ 110/80Ê²Ã´
+ï»¿#include "FunctionWidget.h"
+
+//åˆ¤æ–­æ˜¯å¦æ˜¯é»‘å¤œ 110/80ä»€ä¹ˆ
+//110æ˜¯ä¸€ä¸ªæ˜¼å¤œçš„é•¿åº¦ï¼Œ80æ˜¯ç™½å¤©çš„é•¿åº¦
 bool isNight(const PlayerSight & sight)
 {
 	if (((sight.round - 1) % 110) + 1< 81)
 		return false;
 	return true;
 }
-//ÅĞ¶ÏÊÇ·ñÖ»ĞèÒ»´Î»÷É±??¾Í¿ÉÒÔ»ñÊ¤
+//åˆ¤æ–­æ˜¯å¦åªéœ€ä¸€æ¬¡å‡»æ€å°±å¯ä»¥è·èƒœ
+//å¦‚æœå½“å‰åˆ†æ•°+è¿æ€æ•°>15,é‚£ä¹ˆåªéœ€ä¸€æ¬¡å‡»æ€å³å¯è·èƒœ
 bool oneStrikeToWin(const PlayerSight & sight)
 {
 	int personalScore = sight.scoreBoard[sight.id];
 	return (sight.continuousKill + personalScore >= 15);
 }
-//ÅĞ¶Ï¶ÔÄ¿±êÊÇ·ñÄÜ½øĞĞÎüÑª¹¥»÷
+//åˆ¤æ–­å¯¹ç›®æ ‡æ˜¯å¦èƒ½è¿›è¡Œå¸è¡€æ”»å‡»
 bool canSuckAttack(const PlayerSight & sight)
 {
 	for (auto unit : sight.unitInSight)
 	{
-		if ((unit.pos - sight.pos).length() < SuckRange)
+		if ((unit.pos - sight.pos).length() <= SuckRange)
 			return true;
 	}
 	return false;
 }
-//·µ»ØunitsÖĞ¾àÀëidµ¥Î»×î½üµÄµ¥Î»µÄ¾àÀë,Èç¹ûÃ»ÓĞÕÒµ½idµ¥Î»£¬·µ»ØÖµÎªFINF£¨ÎŞÏŞ£©
-//Èç¹ûĞèÒªÖªµÀ×î½üµ¥Î»µÄid£¬´«ÈëµÚÈı¸ö²ÎÊı
+//è¿”å›unitsä¸­è·ç¦»idå•ä½æœ€è¿‘çš„å•ä½çš„è·ç¦»,å¦‚æœæ²¡æœ‰æ‰¾åˆ°idå•ä½ï¼Œè¿”å›å€¼ä¸ºFINFï¼ˆæ— é™ï¼‰
+//å¦‚æœéœ€è¦çŸ¥é“æœ€è¿‘å•ä½çš„idï¼Œä¼ å…¥ç¬¬ä¸‰ä¸ªå‚æ•°
 float DisOtherUnit(const std::vector<PUnitInfo> & units, int id, int * idOther)
 {
 	int dis = FINF;

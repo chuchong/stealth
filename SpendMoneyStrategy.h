@@ -12,6 +12,7 @@ public:
 	virtual void generateActions(const PlayerSight&, Actions*) override;
 	virtual StrategyType getStrategyType() { return Neutral; }
 
+
 private:
 	int wardNum;
 };

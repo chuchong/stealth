@@ -4,8 +4,8 @@
 void SuckAttackStrategy::generateActions(const PlayerSight &sight, Actions *actions)
 {
 	CHECK_DISABLED
-		if (!sight.canSuckAttack)
-			return;
+	if (!sight.canSuckAttack)
+		return;
 	if (isNight(sight))
 	{
 		if (sight.unitInSightCount != 0)

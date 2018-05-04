@@ -5,10 +5,10 @@ void IdentityStorage::setUnitAsPlayer(int newplayer)
 	if (!checkUnitForPlayer(newplayer))
 	{
 		_identityMemory.push_back(newplayer);
-	}
-	if (DEBUG)
-	{
-		std::cout << "set " << newplayer << " as player." << std::endl;
+		if (DEBUG)
+		{
+			std::cout << "round: " << _sight->round << " set " << newplayer << " as player." << std::endl;
+		}
 	}
 }
 //设定一个角色不是玩家
@@ -48,6 +48,8 @@ void IdentityStorage::executeMessage(Message* msg)
 		case BOMB_APPEAR:
 			{
 				PBombInfo bomb = static_cast<BombAppearMessage*>(msg)->getBombInfo();
+				if (bomb.pos == _sight->pos)
+					return;
 				std::vector<PUnitInfo> units;
 				for (auto unit : lastUnitInSight)
 				{
